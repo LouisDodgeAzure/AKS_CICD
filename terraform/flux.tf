@@ -31,6 +31,47 @@ resource "azurerm_kubernetes_flux_configuration" "cert_manager" {
   ]
 }
 
+resource "kubernetes_cluster_role" "flux_crd_manager" {
+  metadata {
+    name = "flux-crd-manager"
+  }
+
+#   rule {
+#     api_groups = ["apiextensions.k8s.io"]
+#     resources  = ["customresourcedefinitions"]
+#     verbs      = ["get", "list", "create", "update", "patch", "delete"]
+#   }
+
+#   rule {
+#     api_groups = [""]
+#     resources  = ["namespaces"]
+#     verbs      = ["get", "list", "watch", "create", "patch", "update", "delete"]
+#   }
+
+  rule {
+    api_groups = ["*"] # Wildcard for all API groups
+    resources  = ["*"] # Wildcard for all resources
+    verbs      = ["*"] # Wildcard for all verbs/actions
+  }
+}
+
+resource "kubernetes_cluster_role_binding" "flux_crd_manager_binding" {
+  metadata {
+    name = "flux-crd-manager-binding"
+  }
+
+  subject {
+    kind      = "ServiceAccount"
+    name      = "flux-applier" // This should match the service account name used by Flux
+    namespace = "flux-system"
+  }
+
+  role_ref {
+    kind      = "ClusterRole"
+    name      = kubernetes_cluster_role.flux_crd_manager.metadata[0].name
+    api_group = "rbac.authorization.k8s.io"
+  }
+}
 # Define the Git repository and Flux configuration for your application
 # resource "azurerm_kubernetes_flux_configuration" "app_dev" {
 #   name       = "app-dev"

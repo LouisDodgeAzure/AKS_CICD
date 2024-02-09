@@ -1,32 +1,32 @@
 # Managed via azurerm_kubernetes_flux_configuration cert-manager
-# apiVersion: source.toolkit.fluxcd.io/v1beta1
-# kind: HelmRepository
-# metadata:
-#   name: jetstack
-#   namespace: cert-manager
-# spec:
-#   interval: 10m
-#   url: https://charts.jetstack.io
-# ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: cert-manager
-#   namespace: cert-manager
-# spec:
-#   interval: 10m
-#   chart:
-#     spec:
-#       chart: cert-manager
-#       version: "v1.12.0"
-#       sourceRef:
-#         kind: HelmRepository
-#         name: jetstack
-#   install:
-#     crds: CreateReplace
-#   valuesFrom:
-#   - kind: ConfigMap
-#     name: cert-manager-base-values
-#   - kind: ConfigMap
-#     name: cert-manager-overlay-values
-#     optional: true
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: jetstack
+  namespace: cert-manager
+spec:
+  interval: 10m
+  url: https://charts.jetstack.io
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: cert-manager
+      version: "v1.12.0"
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+  install:
+    crds: CreateReplace
+  valuesFrom:
+  - kind: ConfigMap
+    name: cert-manager-base-values
+  - kind: ConfigMap
+    name: cert-manager-overlay-values
+    optional: true
