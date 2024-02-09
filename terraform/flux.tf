@@ -21,6 +21,7 @@ resource "azurerm_kubernetes_flux_configuration" "cert_manager" {
     path                      = "kubernetes/cluster_services/cert-manager/overlays/dev"
     sync_interval_in_seconds  = 600 # 10 minutes
     retry_interval_in_seconds = 600 # 10 minutes
+    recreating_enabled        = true
   }
 
   scope = "namespace"
