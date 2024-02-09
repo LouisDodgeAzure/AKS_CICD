@@ -1,0 +1,135 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+
+# Packages #
+############
+# Dependency directories (commented out by default)
+# node_modules/
+# jspm_packages/
+# venv/
+# bower_components/
+
+# Kubernetes #
+##############
+# Ignore local Kubernetes config files that often contain sensitive information
+.kube/
+
+# Kustomize #
+##############
+# Ignore secret files, as they should not be checked into Git
+secret*.yaml
+
+# Flux #
+########
+# Ignore Flux private key as it should never be committed to a public repository
+**/flux-system/gotk-sync.yaml
+**/flux-system/gotk-*.yaml
+**/flux-system/secrets.yaml
+
+# Helm #
+########
+# Ignore values files that contain sensitive data
+values.secret*.yaml
+# Helm dependency directories
+charts/
+tmpcharts/
+
+# Terraform #
+#############
+# Ignore .terraform directories
+.terraform/
+# Ignore .tfstate files
+*.tfstate
+*.tfstate.*
+# Ignore crash log files
+crash.log
+# Ignore all .tfvars files, which might contain secret data
+*.tfvars
+# Ignore override files as they are usually used to override resources locally
+override.tf
+override.tf.json
+*.override.tf
+*.override.tf.json
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Editor directories and files #
+################################
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+# History of files opened in VSCode
+.vscode/*.history
+
+# Ignore other text editor settings #
+#####################################
+*.sublime-workspace
+*.sublime-project
+.idea/
+*.swp
+*.swo
+*.sln
+*.user
+*.userprefs
+*.builds
+*.pidb
+*.svclog
+*.suo
+*.ntvs*
+*.njsproj
+*.esproj
+*.sln.docstates
+
+# Ignore project-specific settings files #
+##########################################
+# Environment variables
+.env
+.env.local
+.env.*.local
+# Local test settings
+testsettings.local.json
+# Local development specific files
+*.dev
+*.dev.*
+
+# Ignore generated files #
+##########################
+# Compiled binary and object files
+/bin/
+/obj/
+/out/
+/lib/
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
