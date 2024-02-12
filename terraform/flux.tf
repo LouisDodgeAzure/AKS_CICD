@@ -63,7 +63,7 @@ resource "kubernetes_cluster_role_binding" "flux_crd_manager_binding" {
   subject {
     kind      = "ServiceAccount"
     name      = "flux-applier" // This should match the service account name used by Flux
-    namespace = "flux-system"
+    # namespace = "flux-system"
   }
 
 #   role_ref {
