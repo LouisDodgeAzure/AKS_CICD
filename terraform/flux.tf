@@ -76,6 +76,7 @@ resource "kubernetes_cluster_role_binding" "flux_crd_manager_binding" {
     kind      = "ClusterRole"
     name      = "cluster-admin"
     api_group = "rbac.authorization.k8s.io"
+    }
 }
 # Define the Git repository and Flux configuration for your application
 # resource "azurerm_kubernetes_flux_configuration" "app_dev" {
