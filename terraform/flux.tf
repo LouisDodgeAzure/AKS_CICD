@@ -18,7 +18,7 @@ resource "azurerm_kubernetes_flux_configuration" "cert_manager" {
 
   kustomizations {
     name                      = "cert-manager"
-    path                      = "kubernetes/cluster_services/cert-manager/overlays/dev"
+    path                      = "kubernetes/cluster_services/cert-manager/base"
     sync_interval_in_seconds  = 600 # 10 minutes
     retry_interval_in_seconds = 600 # 10 minutes
     recreating_enabled        = true
@@ -63,7 +63,7 @@ resource "kubernetes_cluster_role_binding" "flux_crd_manager_binding" {
   subject {
     kind      = "ServiceAccount"
     name      = "flux-applier" // This should match the service account name used by Flux
-    # namespace = "flux-system"
+    namespace = "flux-system"
   }
 
 #   role_ref {
