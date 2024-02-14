@@ -3,9 +3,9 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - namespace.yaml
-  - cluster-issuer.yaml
-  - https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.crds.yaml
-  - helm.yaml
+  # - cluster-issuer.yaml
+  # - https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.crds.yaml
+  # - helm.yaml
 configMapGenerator:
   - name: cert-manager-base-values
     files:
